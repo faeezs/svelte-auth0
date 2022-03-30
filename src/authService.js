@@ -1,7 +1,7 @@
 // src/authService.js
 
 import createAuth0Client from "@auth0/auth0-spa-js";
-import { user, isAuthenticated, popupOpen } from "./store.js";
+import { user, isAuthenticated, popupOpen, isAuthorized } from "./store.js";
 import config from "./auth_config.js";
 
 async function createClient() {
@@ -20,6 +20,11 @@ async function loginWithPopup(client, options) {
 
     user.set(await client.getUser());
     isAuthenticated.set(true);
+    // const isValid = await user.email
+    // console.log(isValid)
+    // if (isValid==="faeezs@gmail.com") {
+    //   isAuthorized.set(true);
+    // }
   } catch (e) {
     // eslint-disable-next-line
     console.error(e);
